@@ -181,32 +181,35 @@ export default function Header() {
           </button>
         </div>
         <ul className="flex flex-col space-y-4 p-4">
-          <li className="hover:text-blue-400">
+          <li className="text-black hover:underline">
             <Link href="/event" onClick={() => setIsMobileMenuOpen(false)}>
               L'Evento
             </Link>
           </li>
-          <li className="hover:text-blue-400">
+          <li className="text-black hover:underline">
             <Link href="/service" onClick={() => setIsMobileMenuOpen(false)}>
               Servizi
             </Link>
           </li>
-          <li className="hover:text-blue-400">
-            <Link href="/communication" onClick={() => setIsMobileMenuOpen(false)}>
+          <li className="text-black hover:underline">
+            <Link
+              href="/communication"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
               Comunicazioni
             </Link>
           </li>
-          <li className="hover:text-blue-400">
+          <li className="text-black hover:underline">
             <Link href="/streaming" onClick={() => setIsMobileMenuOpen(false)}>
               Streaming
             </Link>
           </li>
-          <li className="hover:text-blue-400">
+          <li className="text-black hover:underline">
             <Link href="/blog" onClick={() => setIsMobileMenuOpen(false)}>
               Blog
             </Link>
           </li>
-          <li className="hover:text-blue-400">
+          <li className="text-black hover:underline">
             <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
               Contattaci
             </Link>
@@ -217,14 +220,14 @@ export default function Header() {
             <Link
               href="/login"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="hover:underline"
+              className="text-black hover:underline"
             >
               Login
             </Link>
             <Link
               href="/registers"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="hover:underline"
+              className="text-black hover:underline"
             >
               Registrazione
             </Link>
