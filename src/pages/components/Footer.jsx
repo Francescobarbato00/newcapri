@@ -3,10 +3,9 @@ import React from 'react';
 export default function Footer() {
   return (
     <footer className="py-12 text-white bg-gradient-to-r from-[#002d64] to-[#001f3f]">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-5">
         {/* Sezione principale con quattro colonne */}
         <div className="flex flex-col md:flex-row justify-between space-y-8 md:space-y-0">
-          
           {/* Informazioni di Contatto */}
           <div className="md:w-1/4">
             <h2 className="text-2xl font-bold tracking-wide mb-4">
@@ -142,7 +141,6 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-
         </div>
 
         {/* Sezione inferiore: Copyright e Social Icons */}

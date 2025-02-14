@@ -27,25 +27,27 @@ const Gallery = () => {
     } else {
       document.body.style.overflow = 'unset';
     }
-    // Cleanup: reset overflow quando il componente viene smontato
     return () => {
       document.body.style.overflow = 'unset';
     };
   }, [selectedImage]);
 
   return (
-    <section className="bg-gray-100 py-16 px-4">
-      <div className="container mx-auto space-y-16">
-        <div className="flex flex-col md:flex-row justify-between items-start space-y-8 md:space-y-0 md:space-x-8">
+    <section className="bg-gray-100 py-16">
+      <div className="container mx-auto px-5 space-y-16">
+        {/* Header della sezione */}
+        <div className="flex flex-col md:flex-row justify-between items-start">
           <div className="md:w-1/2">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-light mb-8 leading-tight text-left">
+            <h1 className="text-[56px] leading-[64px] font-light mb-8 text-left">
               Galleria dell'Evento
             </h1>
-            <p className="text-lg sm:text-xl mb-8 text-left">
+            <p className="text-[18px] sm:text-[20px] mb-8 text-left">
               Esplora la galleria e riscopri i momenti più significativi del nostro evento
             </p>
           </div>
         </div>
+
+        {/* Griglia immagini */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {immagini.map((immagine, index) => (
             <div key={index} className="group">
@@ -61,7 +63,7 @@ const Gallery = () => {
                   />
                 </div>
               </div>
-              <p className="text-gray-700 text-sm sm:text-base lg:text-lg mt-2 text-center">
+              <p className="text-gray-700 text-sm sm:text-base mt-2 text-center">
                 {immagine.didascalia}
               </p>
             </div>
@@ -74,7 +76,10 @@ const Gallery = () => {
           className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[9999] overflow-y-auto"
           onClick={handleClose}
         >
-          <div className="relative max-w-full max-h-full flex flex-col items-center p-4" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="relative max-w-full max-h-full flex flex-col items-center p-4"
+            onClick={(e) => e.stopPropagation()}
+          >
             {/* Pulsante Chiudi */}
             <button
               onClick={handleClose}

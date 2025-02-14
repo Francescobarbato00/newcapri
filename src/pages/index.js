@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import ChatComponent from "./components/ChatComponent";
 import DiscussionSection from "./components/DiscussionSection";
 import Footer from "./components/Footer";
@@ -12,23 +12,24 @@ import TopHeader from "./components/TopHeader";
 
 export default function Home() {
   const [showScrollable, setShowScrollable] = useState(false);
-  const [headerHeight, setHeaderHeight] = useState(0);
 
   useEffect(() => {
-    const topHeader = document.getElementById("top-header");
     const mainHeader = document.getElementById("main-header");
-    
-    if (topHeader && mainHeader) {
-      setHeaderHeight(topHeader.offsetHeight + mainHeader.offsetHeight + 50); // Ritarda l'attivazione
-    }
 
     const handleScroll = () => {
-      setShowScrollable(window.scrollY > headerHeight);
+      if (mainHeader) {
+        // Quando il fondo del mainHeader è ≤ 0 significa che l'intero header è fuori dalla viewport
+        if (mainHeader.getBoundingClientRect().bottom <= 0) {
+          setShowScrollable(true);
+        } else {
+          setShowScrollable(false);
+        }
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [headerHeight]);
+  }, []);
 
   return (
     <div>
