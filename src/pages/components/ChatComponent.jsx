@@ -1,136 +1,236 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { IoCloseSharp } from 'react-icons/io5';
-import { FaPaperPlane } from 'react-icons/fa';
+import React, { useState, useEffect, useRef } from "react";
+import { FiX } from "react-icons/fi";
+import { FaPaperPlane } from "react-icons/fa";
 
-const ChatComponent = () => {
+const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState([]);
-  const [userMessage, setUserMessage] = useState('');
+  const [messages, setMessages] = useState([
+    { id: 1, text: "Benvenuto! Come posso aiutarti oggi?", sender: "bot" },
+  ]);
+  const [isMobile, setIsMobile] = useState(false);
+  const [userMessage, setUserMessage] = useState("");
+  const chatContainerRef = useRef(null);
 
-  const handleChatToggle = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const sendMessage = () => {
-    if (userMessage.trim() === '') return;
-
-    const newMessage = {
-      text: userMessage,
-      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-      sender: 'user',
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 768);
     };
 
-    setMessages((prevMessages) => [
-      ...prevMessages,
-      newMessage,
-      {
-        text: 'Risposta automatica del bot.',
-        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        sender: 'bot',
-      }
-    ]);
-    setUserMessage('');
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
+
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTo({
+        top: chatContainerRef.current.scrollHeight,
+        behavior: "smooth",
+      });
+    }
+  }, [messages]);
+
+  // Blocca lo scroll su mobile (body e html) quando la chat è aperta
+  useEffect(() => {
+    if (isMobile && isOpen) {
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+      document.documentElement.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+      document.documentElement.style.overflow = "auto";
+    };
+  }, [isOpen, isMobile]);
+
+  const toggleChat = () => setIsOpen((prev) => !prev);
+
+  const sendMessage = (message) => {
+    if (message.trim()) {
+      setMessages((prev) => [
+        ...prev,
+        { id: Date.now(), text: message, sender: "user" },
+      ]);
+      setTimeout(() => {
+        const botReply = getBotReply(message);
+        if (botReply) {
+          setMessages((prev) => [
+            ...prev,
+            { id: Date.now() + 1, text: botReply, sender: "bot" },
+          ]);
+        }
+      }, 1000);
+    }
   };
 
-  // Varianti per l'animazione del container della chat
-  const chatVariants = {
-    hidden: { opacity: 0, scale: 0.8, y: 20 },
-    visible: { opacity: 1, scale: 1, y: 0 },
-    exit: { opacity: 0, scale: 1, y: 0 }, // Nessuna variazione di posizione o scala in uscita
+  const getBotReply = (message) => {
+    const lowerMessage = message.toLowerCase();
+    if (lowerMessage.includes("come arrivo")) {
+      return "Puoi raggiungere Capri in traghetto da Napoli, Sorrento o Positano. Ti consiglio di verificare gli orari online.";
+    }
+    if (
+      lowerMessage.includes("quando è l'evento") ||
+      lowerMessage.includes("quando evento")
+    ) {
+      return "Ottobre 2025, data da decidere";
+    }
+    if (
+      lowerMessage.includes("contatti") ||
+      lowerMessage.includes("come contattarci")
+    ) {
+      return "Contatti email: eventodigitalizzazionecapri@gmail.com";
+    }
+    return "Grazie per il tuo messaggio. Ti risponderemo al più presto!";
   };
 
   return (
-    <div className="fixed bottom-4 right-4 px-5 flex flex-col items-end z-50">
+    <>
       {/* Bottone per aprire la chat */}
-      {!isOpen && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className="cursor-pointer hover:scale-105 transition-transform duration-300"
-          onClick={handleChatToggle}
+      <div className="fixed bottom-6 right-6 z-[100]">
+        <button
+          onClick={toggleChat}
+          className="bg-blue-600 text-white rounded-full w-16 h-16 flex items-center justify-center shadow-xl hover:bg-blue-700 transition duration-300 border-4 border-white"
         >
-          <div
-            className="relative bg-blue-500 text-white p-4 rounded-full border-4 border-white shadow-lg hover:shadow-xl"
-            style={{ boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.3)' }}
-          >
+          {isOpen ? (
+            <FiX size={28} />
+          ) : (
             <img src="fara.svg" alt="Chat Icon" className="w-8 h-8" />
-          </div>
-        </motion.div>
+          )}
+        </button>
+      </div>
+
+      {/* Overlay (con z-index inferiore rispetto alla chat) */}
+      {isOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-10 z-[9998] animate-fadeInOverlay"></div>
       )}
 
       {/* Finestra della chat */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            variants={chatVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            transition={{ duration: 0.4, ease: 'easeOut' }}
-            className="chat-window mt-4 w-96 sm:w-80 h-[500px] sm:h-[400px] bg-white rounded-lg shadow-2xl flex flex-col border border-gray-300 overflow-hidden"
+      {isOpen && (
+        <div
+          className={`fixed ${
+            isMobile
+              ? "inset-0 w-full h-full" // Fullscreen su mobile
+              : "bottom-20 right-6 w-[300px] h-[350px]" // Compatta su desktop
+          } rounded-lg bg-white shadow-lg flex flex-col z-[9999] transition-all duration-500 ${
+            isMobile ? "animate-fadeInMobile" : "animate-slideInUp"
+          }`}
+        >
+          {/* Header della chat */}
+          <div className="bg-blue-600 text-white p-3 flex justify-between items-center rounded-t-lg">
+            <h3 className="text-md font-semibold">ChatBot</h3>
+            <button onClick={toggleChat} className="hover:opacity-80 transition">
+              <FiX size={24} />
+            </button>
+          </div>
+
+          {/* Contenitore messaggi */}
+          <div
+            ref={chatContainerRef}
+            className="flex-1 p-3 overflow-y-auto bg-gray-100 text-sm"
+            style={{
+              maxHeight: isMobile ? "calc(100% - 100px)" : "calc(100% - 80px)",
+              scrollbarWidth: "thin",
+              scrollbarColor: "#999 #f1f1f1",
+            }}
           >
-            {/* Header della chat */}
-            <div className="flex justify-between items-center bg-gradient-to-r from-blue-500 to-blue-600 p-3 rounded-t-lg shadow-md">
-              <p className="text-lg font-semibold text-white">Chat</p>
-              <button
-                className="text-white hover:text-gray-300 p-1 rounded-full transition-colors"
-                onClick={() => setIsOpen(false)}
+            {messages.map((msg) => (
+              <div
+                key={msg.id}
+                className={`mb-3 flex ${
+                  msg.sender === "user" ? "justify-end" : "justify-start"
+                }`}
               >
-                <IoCloseSharp className="text-xl" />
-              </button>
-            </div>
-
-            {/* Area messaggi */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
-              {messages.map((message, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                <div
+                  className={`p-2 rounded-md max-w-xs shadow-sm ${
+                    msg.sender === "user"
+                      ? "bg-blue-600 text-white"
+                      : "bg-gray-200 text-gray-800"
+                  }`}
                 >
-                  <div
-                    className={`p-3 rounded-2xl max-w-xs text-sm shadow-md ${
-                      message.sender === 'user'
-                        ? 'bg-blue-500 text-white'
-                        : 'bg-white text-black border border-gray-300'
-                    }`}
-                  >
-                    <p>{message.text}</p>
-                    <span className="block text-right text-xs text-gray-400 mt-1">
-                      {message.time}
-                    </span>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+                  {msg.text}
+                </div>
+              </div>
+            ))}
+          </div>
 
-            {/* Input e bottone invio */}
-            <div className="flex items-center bg-white p-3 rounded-b-lg border-t border-gray-300 shadow-inner">
-              <input
-                type="text"
-                value={userMessage}
-                onChange={(e) => setUserMessage(e.target.value)}
-                placeholder="Scrivi un messaggio..."
-                className="w-full p-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-                onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
-              />
-              <button
-                className="ml-2 bg-blue-500 text-white p-3 rounded-full hover:bg-blue-600 transition-all shadow-md"
-                onClick={sendMessage}
-              >
-                <FaPaperPlane className="text-lg" />
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+          {/* Bottoni delle domande rapide */}
+          <div className="p-3 border-t border-gray-300 bg-white flex justify-center gap-2 flex-wrap">
+            <button
+              onClick={() => sendMessage("Come arrivo a Capri?")}
+              className="bg-blue-500 text-white px-3 py-2 rounded-full text-sm hover:bg-blue-600 transition"
+            >
+              Come arrivo a Capri?
+            </button>
+            <button
+              onClick={() => sendMessage("Quando è l'evento?")}
+              className="bg-blue-500 text-white px-3 py-2 rounded-full text-sm hover:bg-blue-600 transition"
+            >
+              Quando è l'evento?
+            </button>
+            <button
+              onClick={() => sendMessage("Contatti")}
+              className="bg-blue-500 text-white px-3 py-2 rounded-full text-sm hover:bg-blue-600 transition"
+            >
+              Contatti
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Animazioni */}
+      <style jsx>{`
+        @keyframes fadeInOverlay {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+        @keyframes slideInUp {
+          from {
+            transform: translateY(50px);
+            opacity: 0;
+          }
+          to {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+        @keyframes fadeInMobile {
+          from {
+            transform: translateY(100%);
+            opacity: 0;
+          }
+          to {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+        .animate-fadeInOverlay {
+          animation: fadeInOverlay 0.2s ease-in-out forwards;
+        }
+        .animate-slideInUp {
+          animation: slideInUp 0.3s ease-out forwards;
+        }
+        .animate-fadeInMobile {
+          animation: fadeInMobile 0.4s ease-out forwards;
+        }
+        ::-webkit-scrollbar {
+          width: 6px;
+        }
+        ::-webkit-scrollbar-thumb {
+          background: #999;
+          border-radius: 10px;
+        }
+        ::-webkit-scrollbar-track {
+          background: #f1f1f1;
+        }
+      `}</style>
+    </>
   );
 };
 
-export default ChatComponent;
+export default ChatBot;

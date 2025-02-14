@@ -157,7 +157,7 @@ export default function Header() {
         } transition-transform duration-300 ease-in-out`}
       >
         <div className="p-4 flex justify-between items-center border-b">
-          <h2 className="text-xl font-semibold">
+          <h2 className="text-xl font-semibold text-black">
             Evento digitalizzazione Capri
           </h2>
           <button
