@@ -42,7 +42,7 @@ export default function HeroSection() {
             className="text-2xl md:text-5xl font-light text-center mb-8 md:mb-16"
             style={{ fontWeight: 300 }}
           >
-            Stay tuned for Capri
+            Stay tuned for Capri 2025
           </h3>
         </div>
       </section>
