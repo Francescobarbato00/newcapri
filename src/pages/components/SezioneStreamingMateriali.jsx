@@ -46,17 +46,17 @@ const SezioneStreamingMateriali = () => {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {/* Colonna Indice */}
             <div className="md:col-span-1">
-              <div className="sticky top-16 p-4">
-                <h2 className="mb-4 text-[48px] leading-[56px] font-light text-black">
+              <div className="sticky top-16 p-4 pl-0">
+                <h2 className="mb-4 text-[48px] leading-[56px] font-light text-black text-left">
                   Indice della pagina
                 </h2>
-                <ul className="space-y-2">
+                <ul className="space-y-2 pl-0">
                   {tabs.map((tab) => (
                     <li key={tab.id}>
                       <a
                         href={`#${tab.id}`}
                         onClick={(e) => handleSectionClick(tab.id, e)}
-                        className={`block p-3 transition-colors duration-300 text-[20px] font-semibold rounded ${
+                        className={`block p-3 transition-colors duration-300 text-[20px] font-semibold rounded text-left ${
                           selectedSection === tab.id
                             ? "bg-[#F0F6FC] text-[#01478E] border-l-4 border-[#01478E]"
                             : "text-[#01478E] hover:text-[#012E5E]"
