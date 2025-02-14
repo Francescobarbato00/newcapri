@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
-export default function AgencyActions() {
+export default function Events() {
   // Stato per il tab attivo
   const [activeTab, setActiveTab] = useState('Definisce strategie');
 
   return (
-    <section className="bg-gray-100 min-h-screen py-10 px-5">
-      <div className="max-w-7xl mx-auto">
+    <section className="bg-gray-100 py-16">
+      <div className="container mx-auto px-5">
         {/* Titolo principale */}
         <h2 className="text-4xl font-normal text-gray-800 mb-8">
           Programmazione dell'Evento
@@ -15,42 +15,42 @@ export default function AgencyActions() {
         {/* Tabs */}
         <div className="flex justify-around border-b border-gray-300 mb-6">
           <button
-            className={`text-lg font-semibold pb-2 ${
+            className={`flex-1 text-center py-2 transition-colors duration-300 ${
               activeTab === 'Definisce strategie'
-                ? 'text-blue-700 border-b-2 border-blue-700'
-                : 'text-blue-500'
-            } transition-colors duration-300`}
+                ? 'text-blue-700 font-bold text-[24px] leading-[40px] border-b-2 border-blue-700'
+                : 'text-blue-500 font-normal text-[24px] leading-[40px]'
+            }`}
             onClick={() => setActiveTab('Definisce strategie')}
           >
             Primo Giorno
           </button>
           <button
-            className={`text-lg font-semibold pb-2 ${
+            className={`flex-1 text-center py-2 transition-colors duration-300 ${
               activeTab === 'Promuove competenze digitali'
-                ? 'text-blue-700 border-b-2 border-blue-700'
-                : 'text-blue-500'
-            } transition-colors duration-300`}
+                ? 'text-blue-700 font-bold text-[24px] leading-[40px] border-b-2 border-blue-700'
+                : 'text-blue-500 font-normal text-[24px] leading-[40px]'
+            }`}
             onClick={() => setActiveTab('Promuove competenze digitali')}
           >
             Secondo Giorno
           </button>
           <button
-            className={`text-lg font-semibold pb-2 ${
+            className={`flex-1 text-center py-2 transition-colors duration-300 ${
               activeTab === 'Monitora e vigila'
-                ? 'text-blue-700 border-b-2 border-blue-700'
-                : 'text-blue-500'
-            } transition-colors duration-300`}
+                ? 'text-blue-700 font-bold text-[24px] leading-[40px] border-b-2 border-blue-700'
+                : 'text-blue-500 font-normal text-[24px] leading-[40px]'
+            }`}
             onClick={() => setActiveTab('Monitora e vigila')}
           >
             Eventi Ludici
           </button>
         </div>
 
-        {/* Contenuto dinamico in base al tab attivo */}
-        <div>
+        {/* Contenuto dinamico con effetto fade in */}
+        <div key={activeTab} className="animate-fadeIn text-gray-700 mb-8 text-sm sm:text-lg">
           {activeTab === 'Definisce strategie' && (
             <div>
-              <p className="text-gray-700 mb-4">
+              <p className="mb-4">
                 <strong>VENERDI 4 OTTOBRE</strong>
                 <br />
                 Evento Lavoro
@@ -58,8 +58,7 @@ export default function AgencyActions() {
                 "Questioni di diritto e processo del lavoro, nell’era della rivoluzione tecnologica"
                 <br />
                 Capri Sala Pollio - 4 ottobre 2024
-                <br />
-                <br />
+                <br /><br />
                 <strong>14:30</strong>
                 <br />
                 Inizio dei lavori
@@ -89,11 +88,9 @@ export default function AgencyActions() {
                 - <span className="text-blue-700">Federica Porcelli</span>, Giudice del Tribunale.
                 <br />
                 - <span className="text-blue-700">Maria Gallo</span>, Presidente della Sezione Lavoro, Tribunale di Napoli.
-                <br />
-                <br />
+                <br /><br />
                 Coordina <span className="text-blue-700">Pietro Curzio</span>, Presidente Emerito della Corte di Cassazione.
-                <br />
-                <br />
+                <br /><br />
                 <strong>17:00</strong>
                 <br />
                 Tavola rotonda conclusiva: L’impatto della rivoluzione tecnologica sul diritto e processo del lavoro.
@@ -105,8 +102,7 @@ export default function AgencyActions() {
                 - <span className="text-blue-700">Raffaele De Luca Tamajo</span>, Prof. Avv. Emerito di diritto del lavoro, Università di Napoli Federico II.
                 <br />
                 - <span className="text-blue-700">Lorenzo Zoppoli</span>, Ordinario di diritto del lavoro, Università di Napoli Federico II.
-                <br />
-                <br />
+                <br /><br />
                 <strong>17:50</strong>
                 <br />
                 Chiusura dei lavori
@@ -115,7 +111,7 @@ export default function AgencyActions() {
           )}
           {activeTab === 'Promuove competenze digitali' && (
             <div>
-              <p className="text-gray-700 mb-4">
+              <p className="mb-4">
                 <strong>SABATO 5 OTTOBRE</strong>
                 <br />
                 Evento Digitalizzazione
@@ -123,8 +119,7 @@ export default function AgencyActions() {
                 "La Giustizia moderna alla luce dei Regolamenti adottati dall’UE nel Decennio Digitale"
                 <br />
                 Certosa di San Giacomo - 5 ottobre 2024
-                <br />
-                <br />
+                <br /><br />
                 <strong>08:45</strong>
                 <br />
                 Accoglienza in Certosa di San Giacomo
@@ -138,8 +133,7 @@ export default function AgencyActions() {
                 - <span className="text-blue-700">Maria Rosaria Covelli</span>: Presidente della Corte di Appello di Napoli
                 <br />
                 - <span className="text-blue-700">Antonio Gialanella</span>, Procuratore Generale ff. della Corte di Appello di Napoli
-                <br />
-                <br />
+                <br /><br />
                 <strong>09:00</strong>
                 <br />
                 Saluti introduttivi dei promotori:
@@ -153,13 +147,11 @@ export default function AgencyActions() {
                 - <span className="text-blue-700">Francesco Greco</span>, Presidente del Consiglio Nazionale Forense (CNF).
                 <br />
                 - <span className="text-blue-700">Giulio Biino</span>, Presidente del Consiglio Nazionale del Notariato (CNN).
-                <br />
-                <br />
+                <br /><br />
                 <strong>09:45</strong>
                 <br />
                 Intervento del Sig. Ministro della Giustizia <span className="text-blue-700">Carlo Nordio</span>
-                <br />
-                <br />
+                <br /><br />
                 <strong>10:00</strong>
                 <br />
                 PRIMO FOCUS: "L'Identità e domicilio digitali, presupposti per ogni negozio, procedimento e processo digitali"
@@ -175,8 +167,7 @@ export default function AgencyActions() {
                 - <span className="text-blue-700">Antonino Mazzeo</span>, Professore emerito, Università di Napoli Federico II.
                 <br />
                 Keynote speech: <span className="text-blue-700">Antonella Ciriello</span>, Consigliere della Corte di Cassazione e Consulente del Ministro della Giustizia.
-                <br />
-                <br />
+                <br /><br />
                 <strong>10:50</strong>
                 <br />
                 SECONDO FOCUS: Stato della digitalizzazione della giustizia in Italia e in Europa
@@ -194,8 +185,7 @@ export default function AgencyActions() {
                 - <span className="text-blue-700">Francesco Pizzuto</span>, Consigliere Nazionale Forense.
                 <br />
                 Keynote speech: <span className="text-blue-700">Ileana Fedele</span> e <span className="text-blue-700">Alessio Scarcella</span>, Consiglieri della Corte di Cassazione.
-                <br />
-                <br />
+                <br /><br />
                 <strong>12:00</strong>
                 <br />
                 TERZO FOCUS: L'intelligenza artificiale, un pericolo o una sfida per i diritti umani?
@@ -213,13 +203,11 @@ export default function AgencyActions() {
                 - <span className="text-blue-700">Antonio Mura</span>, Capo Ufficio legislativo, Ministero della Giustizia.
                 <br />
                 Keynote speech: <span className="text-blue-700">Mario Nobile</span>, Direttore Generale dell'Agenzia per l'Italia Digitale.
-                <br />
-                <br />
+                <br /><br />
                 <strong>13:45</strong>
                 <br />
                 Light lunch nel Chiostro piccolo della Certosa.
-                <br />
-                <br />
+                <br /><br />
                 <strong>14:45</strong>
                 <br />
                 Divisione nei GRUPPI DI DISCUSSIONE:
@@ -235,8 +223,7 @@ export default function AgencyActions() {
                 Gruppo 5: Europe’s Digital Decade.
                 <br />
                 Gruppo 6: Interventi video registrati.
-                <br />
-                <br />
+                <br /><br />
                 <strong>17:30</strong>
                 <br />
                 Chiusura dei lavori.
@@ -257,8 +244,7 @@ export default function AgencyActions() {
                 Proseguirà poi, alle 11:15, con la visita al Museo Archeologico della Certosa (INGRESSO GRATUITO).
                 <br />
                 Maggiori informazioni al link: L'Isola dei Cesari.
-                <br />
-                <br />
+                <br /><br />
                 <strong>Attività eventuali (dipendenti dal meteo)</strong>
                 <br />
                 <strong>Bagno e Pranzo:</strong> se il meteo lo permetterà, sarà organizzato un bagno al Lido Lo Smeraldo (Marina Grande, tel. 081 8375072).
@@ -266,11 +252,9 @@ export default function AgencyActions() {
                 Il pranzo potrà essere organizzato presso il ristorante Lo Smeraldo o allo Zaffiro (da confermare).
                 <br />
                 I partecipanti interessati sono pregati di contattare direttamente telefonando al lido o ai ristoranti (stessa gestione).
-                <br />
-                <br />
+                <br /><br />
                 <strong>Giro dell'isola:</strong> il giro in barca sarà confermato in base alle condizioni meteo. In caso di conferma, la partenza sarà dal Molo 1 del porto di Marina Grande con i motoscafisti capresi.
-                <br />
-                <br />
+                <br /><br />
                 Per ulteriori informazioni o dettagli, non esitate a contattarci a:{" "}
                 <a
                   href="mailto:eventodigitalizzazionecapri@gmail.com"
@@ -279,8 +263,7 @@ export default function AgencyActions() {
                   eventodigitalizzazionecapri@gmail.com
                 </a>
                 .
-                <br />
-                <br />
+                <br /><br />
               </p>
             </div>
           )}

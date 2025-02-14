@@ -55,33 +55,33 @@ const Archive = () => {
         ],
       },
     ],
-    // Immagina qui altri anni...
+    // Altri anni...
   };
 
-  // Estraiamo gli anni (tab) dall'oggetto eventsData e li ordiniamo dal più recente
+  // Estraiamo gli anni (tab) e li ordiniamo dal più recente
   const years = Object.keys(eventsData).sort((a, b) => b - a);
   const [activeYear, setActiveYear] = useState(years[0]);
 
   return (
-    <section className="bg-gray-100 py-6 px-5">
-      <div className="max-w-7xl mx-auto">
-        {/* Titolo con minore margine superiore per spostare il contenuto più su */}
+    <section className="bg-gray-100 py-16">
+      <div className="container mx-auto px-5">
+        {/* Titolo principale */}
         <h2 className="text-4xl font-normal text-gray-800 mb-6">
           Archivio Eventi
         </h2>
 
-        {/* Container scrollabile orizzontalmente per i tab (in caso di molti anni) */}
+        {/* Tabs per gli anni */}
         <div className="overflow-x-auto pb-2">
           <div className="flex space-x-6 border-b border-gray-300 mb-6">
             {years.map((year) => (
               <button
                 key={year}
-                className={`whitespace-nowrap text-lg font-semibold pb-2 transition-colors duration-300 ${
+                onClick={() => setActiveYear(year)}
+                className={`whitespace-nowrap text-[20px] font-medium pb-2 transition-colors duration-300 ${
                   activeYear === year
                     ? "text-blue-700 border-b-2 border-blue-700"
                     : "text-blue-500 hover:text-blue-700"
                 }`}
-                onClick={() => setActiveYear(year)}
               >
                 {year}
               </button>
@@ -89,22 +89,26 @@ const Archive = () => {
           </div>
         </div>
 
-        {/* Lista degli eventi per l'anno attivo */}
-        <div className="space-y-8">
+        {/* Lista degli eventi per l'anno attivo con effetto di ingresso */}
+        <div key={activeYear} className="animate-fadeIn space-y-8">
           {eventsData[activeYear]?.map((event, index) => (
             <div
               key={index}
               className="bg-white shadow-md rounded-lg p-6 transition-transform hover:-translate-y-1 duration-300"
             >
-              <p className="text-gray-700 mb-2">
+              <p className="text-[16px] font-medium text-gray-700 mb-2">
                 <strong>{event.date}</strong>
               </p>
               <p className="text-2xl font-bold text-gray-800 mb-2">
                 {event.title}
               </p>
-              <p className="text-gray-700 mb-4">{event.description}</p>
-              <p className="text-gray-700 mb-2">{event.location}</p>
-              <ul className="text-gray-700 space-y-1">
+              <p className="text-[18px] text-gray-700 mb-4">
+                {event.description}
+              </p>
+              <p className="text-[18px] text-gray-700 mb-2">
+                {event.location}
+              </p>
+              <ul className="text-[16px] text-gray-700 space-y-1">
                 {event.timings.map((timing, i) => (
                   <li key={i}>
                     <strong>{timing.time}</strong>: {timing.detail}

@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import Head from "next/head";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
 const BlogSection = () => {
   const [category, setCategory] = useState("Tutte");
@@ -20,19 +22,30 @@ const BlogSection = () => {
   const filteredArticles = articles
     .filter((article) => category === "Tutte" || article.category === category)
     .filter((article) => searchTerm.trim() === "" || article.title.toLowerCase().includes(searchTerm.toLowerCase()))
-    .sort((a, b) => (order === "Più recenti" ? new Date(b.date) - new Date(a.date) : new Date(a.date) - new Date(b.date)));
+    .sort((a, b) =>
+      order === "Più recenti" ? new Date(b.date) - new Date(a.date) : new Date(a.date) - new Date(b.date)
+    );
 
   const totalPages = Math.ceil(filteredArticles.length / articlesPerPage);
   const currentArticles = filteredArticles.slice((currentPage - 1) * articlesPerPage, currentPage * articlesPerPage);
 
-  useEffect(() => {
+  // Scroll in cima ad ogni cambio di filtro
+  React.useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [currentPage, category, order, searchTerm]);
 
   return (
     <section className="bg-white py-10">
-      {/* Assicuriamoci che sia esattamente allineato con il layout */}
-      <div className="max-w-7xl mx-auto px-5">
+      <Head>
+        <title>Il Nostro Blog - Evento Digitale</title>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
+
+      {/* Wrapper esattamente come nel TopHeader */}
+      <div className="container mx-auto px-5">
         {/* Breadcrumb */}
         <div className="text-xs mb-4 text-gray-500">
           <a href="/" className="hover:underline">Home</a>
@@ -40,24 +53,29 @@ const BlogSection = () => {
           <span>Blog</span>
         </div>
 
-        {/* Titolo e Descrizione */}
+        {/* Titolo e descrizione della sezione */}
         <div className="flex flex-col md:flex-row items-start mb-8">
           <div className="w-full md:w-1/3">
-            <h1 className="text-4xl leading-snug text-black font-light">Il Nostro Blog</h1>
+            <h1 className="text-[56px] leading-[64px] font-light text-black">
+              Il Nostro Blog
+            </h1>
           </div>
           <div className="w-full md:w-2/3 md:pl-6">
-            <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
+            <p className="text-[18px] sm:text-[20px] text-gray-600 leading-relaxed">
               Scopri articoli, approfondimenti e novità relative all'evento e al mondo digitale. Rimani aggiornato e lasciati ispirare dalle nostre storie.
             </p>
           </div>
         </div>
 
-        {/* Filtri (spostati più in basso per un miglior allineamento) */}
+        {/* Filtri */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-10">
-          <div className="flex items-center space-x-2 text-sm">
+          <div className="flex items-center space-x-2 text-[18px]">
             <label className="text-gray-600">Categoria:</label>
-            <select className="border border-gray-300 p-2 text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={category} onChange={(e) => { setCategory(e.target.value); setCurrentPage(1); }}>
+            <select
+              className="border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-[18px]"
+              value={category}
+              onChange={(e) => { setCategory(e.target.value); setCurrentPage(1); }}
+            >
               <option value="Tutte">Tutte</option>
               <option value="Piano Triennale">Piano Triennale</option>
               <option value="Sicurezza informatica">Sicurezza informatica</option>
@@ -68,31 +86,55 @@ const BlogSection = () => {
             </select>
           </div>
 
-          <div className="flex items-center space-x-2 text-sm">
+          <div className="flex items-center space-x-2 text-[18px]">
             <label className="text-gray-600">Ordina per data:</label>
-            <select className="border border-gray-300 p-2 text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={order} onChange={(e) => setOrder(e.target.value)}>
+            <select
+              className="border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-[18px]"
+              value={order}
+              onChange={(e) => setOrder(e.target.value)}
+            >
               <option value="Più recenti">Più recenti</option>
               <option value="Meno recenti">Meno recenti</option>
             </select>
           </div>
 
-          <div className="flex items-center space-x-2 text-sm">
+          <div className="flex items-center space-x-2 text-[18px]">
             <label className="text-gray-600">Cerca:</label>
-            <input type="text" className="border border-gray-300 p-2 text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Titolo o categoria..." value={searchTerm} onChange={(e) => { setSearchTerm(e.target.value); setCurrentPage(1); }} />
+            <input
+              type="text"
+              className="border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-[18px]"
+              placeholder="Titolo o categoria..."
+              value={searchTerm}
+              onChange={(e) => { setSearchTerm(e.target.value); setCurrentPage(1); }}
+            />
           </div>
         </div>
 
-        {/* Lista Articoli */}
+        {/* Lista Articoli con effetto di ingresso */}
         <AnimatePresence exitBeforeEnter>
-          <motion.div className="grid grid-cols-1 sm:grid-cols-2 gap-8 border-t pt-6">
+          <motion.div 
+            key={currentPage + category + order + searchTerm}
+            className="grid grid-cols-1 sm:grid-cols-2 gap-8 border-t pt-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.75, ease: "easeOut" }}
+          >
             {currentArticles.map((article) => (
               <div key={article.id} className="border-t pt-6">
-                <span className="inline-block bg-gray-200 text-gray-700 text-xs font-semibold px-2 py-1 rounded">{article.category}</span>
-                <h2 className="text-2xl leading-snug font-light text-black mt-2">{article.title}</h2>
-                <p className="text-gray-500 text-xs mt-2">NEWS • {article.date}</p>
-                <a href="#" className="text-blue-600 font-semibold hover:underline text-sm mt-3 inline-block">VAI ALL'ARTICOLO →</a>
+                <span className="inline-block bg-gray-200 text-gray-700 text-[16px] font-semibold px-2 py-1 rounded">
+                  {article.category}
+                </span>
+                <h2 className="text-[32px] font-light text-black mt-2">{article.title}</h2>
+                <p className="text-gray-500 text-[18px] mt-2">
+                  NEWS • {article.date}
+                </p>
+                <a 
+                  href="#" 
+                  className="text-blue-600 font-semibold hover:underline text-[18px] mt-3 inline-block"
+                >
+                  VAI ALL'ARTICOLO →
+                </a>
               </div>
             ))}
           </motion.div>

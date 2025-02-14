@@ -3,7 +3,6 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 const InfoSection = () => {
-  // Comunicazioni hard-coded
   const comunicazioni = [
     {
       id: 1,
@@ -47,13 +46,15 @@ const InfoSection = () => {
     },
   ];
 
-  // Stato per il tab attivo
   const [activeTab, setActiveTab] = useState("News");
 
   // Filtra le comunicazioni in base al tab attivo
   const filteredCommunications = comunicazioni.filter(
     (comm) => comm.category === activeTab
   );
+
+  // Definiamo i nomi dei tab
+  const tabs = ["News", "Eventi", "Comunicazioni Tecniche", "Pubblicazioni"];
 
   return (
     <>
@@ -65,66 +66,37 @@ const InfoSection = () => {
         />
       </Head>
 
-      <section className="bg-white py-16 px-4">
-        <div className="container mx-auto">
+      <section className="bg-white py-16">
+        <div className="container mx-auto px-5">
           {/* Breadcrumb */}
           <div className="text-sm mb-4 text-gray-500">
-            <a href="/" className="hover:underline">Home</a> <span className="mx-2">/</span> <span>Comunicazioni</span>
+            <a href="/" className="hover:underline">Home</a>
+            <span className="mx-2">/</span>
+            <span>Comunicazioni</span>
           </div>
 
           {/* Header */}
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-12 space-y-4 sm:space-y-0">
-            <h2 className="text-3xl sm:text-4xl font-light text-black">
+          <div className="flex flex-col sm:flex-row justify-between items-center mb-12">
+            <h2 className="text-[56px] leading-[64px] font-normal text-black">
               Comunicazioni in primo piano
             </h2>
-            <a className="text-blue-600 font-semibold underline hover:text-blue-800">
+            <a href="#" className="text-blue-600 font-semibold underline hover:text-blue-800">
               SCOPRI TUTTE LE COMUNICAZIONI &rarr;
             </a>
           </div>
 
-          {/* Barra di navigazione (Tabs) */}
-          <nav
-            style={{
-              marginBottom: '30px',
-              borderBottom: '2px solid #e0e0e0',
-              paddingBottom: '10px',
-            }}
-          >
-            <ul
-              style={{
-                display: 'flex',
-                justifyContent: 'flex-start',
-                flexWrap: 'wrap',
-                listStyle: 'none',
-                padding: '0',
-                marginBottom: '0',
-              }}
-            >
-              {["News", "Eventi", "Comunicazioni Tecniche", "Pubblicazioni"].map((tab) => (
-                <li key={tab} style={{ marginRight: '20px', cursor: 'pointer' }}>
+          {/* Tabs */}
+          <nav className="mb-8 border-b-2 border-gray-300 pb-2">
+            <ul className="flex flex-wrap space-x-6">
+              {tabs.map((tab) => (
+                <li key={tab} className="cursor-pointer">
                   <span
                     onClick={() => setActiveTab(tab)}
-                    style={{
-                      textDecoration: 'none',
-                      color: activeTab === tab ? 'rgb(0, 51, 153)' : 'rgb(0, 102, 204)',
-                      fontWeight: '400',
-                      fontSize: '1.5rem',
-                      lineHeight: '2rem',
-                      padding: '4px 8px',
-                      borderRadius: '4px',
-                      borderBottom: activeTab === tab ? '2px solid rgb(0, 51, 153)' : 'none',
-                      transition: 'all 0.3s ease',
-                    }}
-                    onMouseEnter={(e) => {
-                      if (activeTab !== tab) {
-                        e.target.style.color = 'rgb(0, 51, 153)';
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      if (activeTab !== tab) {
-                        e.target.style.color = 'rgb(0, 102, 204)';
-                      }
-                    }}
+                    className={`whitespace-nowrap text-[20px] font-medium transition-colors duration-300 px-2 py-1 rounded ${
+                      activeTab === tab
+                        ? "text-blue-700 border-b-2 border-blue-700"
+                        : "text-blue-500 hover:text-blue-700"
+                    }`}
                   >
                     {tab}
                   </span>
@@ -139,7 +111,7 @@ const InfoSection = () => {
               filteredCommunications.map((comm) => (
                 <div
                   key={comm.id}
-                  className="bg-white shadow-lg rounded-lg overflow-hidden fade-in"
+                  className="bg-white shadow-lg rounded-lg overflow-hidden animate-fadeIn"
                 >
                   <img
                     src={comm.image_url || '/placeholder.jpg'}
@@ -176,8 +148,8 @@ const InfoSection = () => {
       </section>
 
       <style jsx>{`
-        .fade-in {
-          animation: fadeIn 0.5s ease-in-out;
+        .animate-fadeIn {
+          animation: fadeIn 1s ease-out;
         }
         @keyframes fadeIn {
           from {

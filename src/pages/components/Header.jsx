@@ -15,7 +15,10 @@ export default function Header() {
         />
       </Head>
 
-      <nav id="main-header" className="w-full py-4 bg-white shadow-md z-50">
+      <nav
+        id="main-header"
+        className="w-full py-4 bg-white shadow-md border-b border-gray-300 z-50"
+      >
         <div className="container mx-auto px-5 flex justify-between items-center">
           {/* Logo */}
           <div className="flex items-center">
