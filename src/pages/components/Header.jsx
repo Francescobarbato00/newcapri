@@ -1,10 +1,25 @@
 import Head from "next/head";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Finder from "./Finder"; // Assicurati che il percorso sia corretto
 
 export default function Header() {
   const [isFinderOpen, setIsFinderOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Blocca lo scroll della pagina quando il menu mobile è aperto
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    // Pulizia in caso di smontaggio del componente
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isMobileMenuOpen]);
 
   return (
     <>
@@ -90,24 +105,11 @@ export default function Header() {
 
           {/* Mobile Menu Icons */}
           <div className="md:hidden flex justify-end items-center w-full">
-            <button className="w-10 h-10 bg-white text-blue-900 rounded-full flex justify-center items-center">
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M11 19a8 8 0 100-16 8 8 0 000 16zm0 0l4.28 4.28"
-                />
-              </svg>
-            </button>
-
-            <button className="ml-4 text-blue-900 focus:outline-none">
+            {/* Bottone per aprire il menu mobile */}
+            <button
+              onClick={() => setIsMobileMenuOpen(true)}
+              className="w-10 h-10 bg-white text-blue-900 rounded-full flex justify-center items-center focus:outline-none"
+            >
               <svg
                 className="w-6 h-6"
                 fill="none"
@@ -123,9 +125,120 @@ export default function Header() {
                 />
               </svg>
             </button>
+
+            {/* Icona di ricerca per mobile */}
+            <button
+              onClick={() => setIsFinderOpen(true)}
+              className="ml-4 text-blue-900 focus:outline-none"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            </button>
           </div>
         </div>
       </nav>
+
+      {/* Mobile Menu (Slide-in da sinistra) */}
+      <div
+        className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 transform ${
+          isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+        } transition-transform duration-300 ease-in-out`}
+      >
+        <div className="p-4 flex justify-between items-center border-b">
+          <h2 className="text-xl font-semibold">
+            Evento digitalizzazione Capri
+          </h2>
+          <button
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="focus:outline-none"
+          >
+            <svg
+              className="w-6 h-6 text-gray-700"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+        <ul className="flex flex-col space-y-4 p-4">
+          <li className="hover:text-blue-400">
+            <Link href="/event" onClick={() => setIsMobileMenuOpen(false)}>
+              L'Evento
+            </Link>
+          </li>
+          <li className="hover:text-blue-400">
+            <Link href="/service" onClick={() => setIsMobileMenuOpen(false)}>
+              Servizi
+            </Link>
+          </li>
+          <li className="hover:text-blue-400">
+            <Link href="/communication" onClick={() => setIsMobileMenuOpen(false)}>
+              Comunicazioni
+            </Link>
+          </li>
+          <li className="hover:text-blue-400">
+            <Link href="/streaming" onClick={() => setIsMobileMenuOpen(false)}>
+              Streaming
+            </Link>
+          </li>
+          <li className="hover:text-blue-400">
+            <Link href="/blog" onClick={() => setIsMobileMenuOpen(false)}>
+              Blog
+            </Link>
+          </li>
+          <li className="hover:text-blue-400">
+            <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+              Contattaci
+            </Link>
+          </li>
+        </ul>
+        <div className="p-4 border-t mt-auto">
+          <div className="flex flex-col space-y-2">
+            <Link
+              href="/login"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="hover:underline"
+            >
+              Login
+            </Link>
+            <Link
+              href="/registers"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="hover:underline"
+            >
+              Registrazione
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Overlay per chiudere il menu cliccando fuori */}
+      {isMobileMenuOpen && (
+        <div
+          onClick={() => setIsMobileMenuOpen(false)}
+          className="fixed inset-0 bg-black opacity-50 z-40"
+        />
+      )}
 
       {isFinderOpen && <Finder onClose={() => setIsFinderOpen(false)} />}
     </>
