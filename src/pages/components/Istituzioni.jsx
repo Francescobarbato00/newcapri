@@ -27,7 +27,7 @@ const Istituzioni = () => {
         />
       </Head>
 
-      <section className="py-16">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-5 flex flex-col md:flex-row items-center md:justify-between">
           {/* Colonna sinistra: Testo */}
           <div className="md:w-1/3">
