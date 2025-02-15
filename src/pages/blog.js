@@ -3,8 +3,8 @@ import ChatComponent from "./components/ChatComponent";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import ScorrableHeader from "./components/ScorrableHeader";
+import ScorrableHeaderMobile from "./components/ScorrableHeaderMobile";
 import TopHeader from "./components/TopHeader";
-
 import BlogSection from "./components/Blogs";
 
 export default function Blog() {
@@ -33,7 +33,16 @@ export default function Blog() {
       <ChatComponent />
       <TopHeader id="top-header" />
       <Header id="main-header" />
-      {showScrollable && <ScorrableHeader />}
+      {showScrollable && (
+        <>
+          <div className="hidden md:block">
+            <ScorrableHeader />
+          </div>
+          <div className="block md:hidden">
+            <ScorrableHeaderMobile />
+          </div>
+        </>
+      )}
       <BlogSection />
       <Footer />
     </div>

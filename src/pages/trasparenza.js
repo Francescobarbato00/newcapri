@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import Header from "./components/Header";
 import ScorrableHeader from "./components/ScorrableHeader";
+import ScorrableHeaderMobile from "./components/ScorrableHeaderMobile";
 import TopHeader from "./components/TopHeader";
 import Footer from "./components/Footer";
-
 
 export default function Trasparenza() {
   const [showScrollable, setShowScrollable] = useState(false);
@@ -30,8 +30,16 @@ export default function Trasparenza() {
       {/* Assegna gli id per il calcolo dell'altezza */}
       <TopHeader id="top-header" />
       <Header id="main-header" />
-      {showScrollable && <ScorrableHeader />}
-      
+      {showScrollable && (
+        <>
+          <div className="hidden md:block">
+            <ScorrableHeader />
+          </div>
+          <div className="block md:hidden">
+            <ScorrableHeaderMobile />
+          </div>
+        </>
+      )}
       <Footer />
     </div>
   );
