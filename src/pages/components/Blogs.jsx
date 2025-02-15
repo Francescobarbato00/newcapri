@@ -70,9 +70,9 @@ const BlogSection = () => {
         {/* Filtri */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-10">
           <div className="flex items-center space-x-2 text-[18px]">
-            <label className="text-gray-600">Categoria:</label>
+            <label className="text-black sm:text-gray-600">Categoria:</label>
             <select
-              className="border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-[18px]"
+              className="border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black text-[18px]"
               value={category}
               onChange={(e) => { setCategory(e.target.value); setCurrentPage(1); }}
             >
@@ -87,9 +87,9 @@ const BlogSection = () => {
           </div>
 
           <div className="flex items-center space-x-2 text-[18px]">
-            <label className="text-gray-600">Ordina per data:</label>
+            <label className="text-black sm:text-gray-600">Ordina per data:</label>
             <select
-              className="border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-[18px]"
+              className="border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black text-[18px]"
               value={order}
               onChange={(e) => setOrder(e.target.value)}
             >
@@ -99,10 +99,10 @@ const BlogSection = () => {
           </div>
 
           <div className="flex items-center space-x-2 text-[18px]">
-            <label className="text-gray-600">Cerca:</label>
+            <label className="text-black sm:text-gray-600">Cerca:</label>
             <input
               type="text"
-              className="border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-[18px]"
+              className="border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black text-[18px]"
               placeholder="Titolo o categoria..."
               value={searchTerm}
               onChange={(e) => { setSearchTerm(e.target.value); setCurrentPage(1); }}

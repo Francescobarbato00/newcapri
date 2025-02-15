@@ -75,35 +75,64 @@ const InfoSection = () => {
             <span>Comunicazioni</span>
           </div>
 
-          {/* Header */}
-          <div className="flex flex-col sm:flex-row justify-between items-center mb-12">
-            <h2 className="text-[56px] leading-[64px] font-normal text-black">
-              Comunicazioni in primo piano
-            </h2>
-            <a href="#" className="text-blue-600 font-semibold underline hover:text-blue-800">
-              SCOPRI TUTTE LE COMUNICAZIONI &rarr;
-            </a>
+          {/* Desktop Header & Tabs */}
+          <div className="hidden sm:block">
+            <div className="flex flex-col sm:flex-row justify-between items-center mb-12">
+              <h2 className="text-[32px] sm:text-[56px] leading-[40px] sm:leading-[64px] font-normal text-black">
+                Comunicazioni in primo piano
+              </h2>
+              <a 
+                href="#" 
+                className="text-blue-600 font-semibold underline hover:text-blue-800"
+              >
+                SCOPRI TUTTE LE COMUNICAZIONI &rarr;
+              </a>
+            </div>
+            <nav className="mb-8 border-b-2 border-gray-300 pb-2">
+              <ul className="flex flex-wrap space-x-6">
+                {tabs.map((tab) => (
+                  <li key={tab} className="cursor-pointer">
+                    <span
+                      onClick={() => setActiveTab(tab)}
+                      className={`whitespace-nowrap text-[20px] font-medium transition-colors duration-300 px-2 py-1 rounded ${
+                        activeTab === tab
+                          ? "text-blue-700 border-b-2 border-blue-700"
+                          : "text-blue-500 hover:text-blue-700"
+                      }`}
+                    >
+                      {tab}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </nav>
           </div>
 
-          {/* Tabs */}
-          <nav className="mb-8 border-b-2 border-gray-300 pb-2">
-            <ul className="flex flex-wrap space-x-6">
-              {tabs.map((tab) => (
-                <li key={tab} className="cursor-pointer">
-                  <span
-                    onClick={() => setActiveTab(tab)}
-                    className={`whitespace-nowrap text-[20px] font-medium transition-colors duration-300 px-2 py-1 rounded ${
-                      activeTab === tab
-                        ? "text-blue-700 border-b-2 border-blue-700"
-                        : "text-blue-500 hover:text-blue-700"
-                    }`}
-                  >
+          {/* Mobile Header: Titolo, Link e Menu a tendina */}
+          <div className="block sm:hidden mb-12">
+            <h2 className="text-[32px] leading-[40px] font-normal text-black">
+              Comunicazioni in primo piano
+            </h2>
+            <a 
+              href="#" 
+              className="text-blue-600 font-semibold underline hover:text-blue-800 mt-2"
+            >
+              SCOPRI TUTTE LE COMUNICAZIONI &rarr;
+            </a>
+            <div className="mt-4">
+              <select
+                value={activeTab}
+                onChange={(e) => setActiveTab(e.target.value)}
+                className="w-full border border-gray-300 p-2 rounded"
+              >
+                {tabs.map((tab) => (
+                  <option key={tab} value={tab}>
                     {tab}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </nav>
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
 
           {/* Comunicazioni Grid con effetto fade in */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
