@@ -38,10 +38,10 @@ const Gallery = () => {
         {/* Header della sezione */}
         <div className="flex flex-col md:flex-row justify-between items-start">
           <div className="md:w-1/2">
-            <h1 className="text-[56px] leading-[64px] font-light mb-8 text-left">
+            <h1 className="text-[56px] leading-[64px] font-light mb-8 text-left text-black">
               Galleria dell'Evento
             </h1>
-            <p className="text-[18px] sm:text-[20px] mb-8 text-left">
+            <p className="text-[18px] sm:text-[20px] mb-8 text-left text-black">
               Esplora la galleria e riscopri i momenti più significativi del nostro evento
             </p>
           </div>
@@ -63,7 +63,7 @@ const Gallery = () => {
                   />
                 </div>
               </div>
-              <p className="text-gray-700 text-sm sm:text-base mt-2 text-center">
+              <p className="text-black md:text-gray-700 text-sm sm:text-base mt-2 text-center">
                 {immagine.didascalia}
               </p>
             </div>
