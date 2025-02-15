@@ -71,7 +71,7 @@ const Archive = () => {
         </h2>
 
         {/* Tabs per gli anni */}
-        <div className="overflow-x-auto pb-2">
+        <div className="overflow-x-auto pb-2 mt-6 sm:mt-0">
           <div className="flex space-x-6 border-b border-gray-300 mb-6">
             {years.map((year) => (
               <button
@@ -79,8 +79,8 @@ const Archive = () => {
                 onClick={() => setActiveYear(year)}
                 className={`whitespace-nowrap text-[20px] font-medium pb-2 transition-colors duration-300 ${
                   activeYear === year
-                    ? "text-blue-700 border-b-2 border-blue-700"
-                    : "text-blue-500 hover:text-blue-700"
+                    ? "text-black sm:text-blue-700 border-b-2 border-blue-700"
+                    : "text-black sm:text-blue-500 hover:text-blue-700"
                 }`}
               >
                 {year}

@@ -115,15 +115,15 @@ const InfoSection = () => {
             </h2>
             <a 
               href="#" 
-              className="text-blue-600 font-semibold underline hover:text-blue-800 mt-2"
+              className="text-blue-600 font-semibold underline hover:text-blue-800 mt-4"
             >
               SCOPRI TUTTE LE COMUNICAZIONI &rarr;
             </a>
-            <div className="mt-4">
+            <div className="mt-6">
               <select
                 value={activeTab}
                 onChange={(e) => setActiveTab(e.target.value)}
-                className="w-full border border-gray-300 p-2 rounded"
+                className="w-full border border-gray-300 p-2 rounded text-black"
               >
                 {tabs.map((tab) => (
                   <option key={tab} value={tab}>

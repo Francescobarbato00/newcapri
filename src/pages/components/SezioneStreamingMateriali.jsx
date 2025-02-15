@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
 
 const SezioneStreamingMateriali = () => {
   const [selectedSection, setSelectedSection] = useState("registrazioni2024");
@@ -13,7 +14,7 @@ const SezioneStreamingMateriali = () => {
     });
   };
 
-  // Lista dei tab (le etichette possono essere capitalizzate in base alle preferenze)
+  // Lista dei tab
   const tabs = [
     { id: "registrazioni2024", label: "Registrazioni 2024" },
     { id: "registrazioni2023", label: "Registrazioni 2023" },
@@ -42,10 +43,9 @@ const SezioneStreamingMateriali = () => {
             <span>Streaming</span>
           </div>
 
-          {/* Layout a due colonne: Indice e Contenuto */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {/* Colonna Indice */}
-            <div className="md:col-span-1">
+            {/* Colonna Indice - Desktop */}
+            <div className="hidden sm:block md:col-span-1">
               <div className="sticky top-16 p-4 pl-0">
                 <h2 className="mb-4 text-[48px] leading-[56px] font-light text-black text-left">
                   Indice della pagina
@@ -58,8 +58,8 @@ const SezioneStreamingMateriali = () => {
                         onClick={(e) => handleSectionClick(tab.id, e)}
                         className={`block p-3 transition-colors duration-300 text-[20px] font-semibold rounded text-left ${
                           selectedSection === tab.id
-                            ? "bg-[#F0F6FC] text-[#01478E] border-l-4 border-[#01478E]"
-                            : "text-[#01478E] hover:text-[#012E5E]"
+                            ? "bg-[#F0F6FC] text-black sm:text-[#01478E] border-l-4 border-[#01478E]"
+                            : "text-black sm:text-[#01478E] hover:text-[#012E5E]"
                         }`}
                       >
                         {tab.label}
@@ -70,9 +70,36 @@ const SezioneStreamingMateriali = () => {
               </div>
             </div>
 
+            {/* Colonna Indice - Mobile */}
+            <div className="block sm:hidden md:col-span-1">
+              <div className="p-4">
+                <h2 className="mb-4 text-[48px] leading-[56px] font-light text-black text-left">
+                  Indice della pagina
+                </h2>
+                <a
+                  href="#"
+                  className="text-blue-600 font-semibold underline hover:text-blue-800 block text-left"
+                >
+                  SCOPRI TUTTE LE COMUNICAZIONI &rarr;
+                </a>
+                <div className="mt-4">
+                  <select
+                    value={selectedSection}
+                    onChange={(e) => setSelectedSection(e.target.value)}
+                    className="w-full border border-gray-300 p-2 rounded text-black"
+                  >
+                    {tabs.map((tab) => (
+                      <option key={tab.id} value={tab.id}>
+                        {tab.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            </div>
+
             {/* Colonna Contenuto */}
             <div className="md:col-span-3">
-              {/* Titolo e descrizione principali */}
               <h1 className="text-[56px] leading-[64px] font-light text-black mb-6">
                 Sezione Streaming e Materiali
               </h1>
