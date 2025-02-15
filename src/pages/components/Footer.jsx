@@ -7,7 +7,7 @@ export default function Footer() {
         {/* Sezione principale con quattro colonne */}
         <div className="flex flex-col md:flex-row justify-between space-y-8 md:space-y-0">
           {/* Informazioni di Contatto */}
-          <div className="md:w-1/4">
+          <div className="md:w-1/4 text-center md:text-left">
             <h2 className="text-2xl font-bold tracking-wide mb-4">
               Capri | Digitalizzazione della Giustizia
             </h2>
@@ -43,7 +43,7 @@ export default function Footer() {
           </div>
 
           {/* Link Utili */}
-          <div className="md:w-1/4 text-right">
+          <div className="md:w-1/4 text-center md:text-right">
             <h2 className="text-2xl font-bold tracking-wide mb-4">LINK UTILI</h2>
             <ul className="space-y-3">
               <li>
@@ -74,7 +74,7 @@ export default function Footer() {
           </div>
 
           {/* Siti Tematici */}
-          <div className="md:w-1/4 text-right">
+          <div className="md:w-1/4 text-center md:text-right">
             <h2 className="text-2xl font-bold tracking-wide mb-4">SITI TEMATICI</h2>
             <ul className="space-y-3">
               <li>
@@ -121,7 +121,7 @@ export default function Footer() {
           </div>
 
           {/* Sito a cura di */}
-          <div className="md:w-1/4 text-right">
+          <div className="md:w-1/4 text-center md:text-right">
             <h2 className="text-2xl font-bold tracking-wide mb-4">Sito a cura di:</h2>
             <ul className="space-y-3">
               <li>
@@ -145,7 +145,7 @@ export default function Footer() {
 
         {/* Sezione inferiore: Copyright e Social Icons */}
         <div className="flex flex-col md:flex-row items-center justify-between mt-10 border-t border-gray-500 pt-6">
-          <p className="text-sm">
+          <p className="text-sm text-center md:text-left">
             &copy; {new Date().getFullYear()} Capri | Digitalizzazione della Giustizia. Tutti i diritti riservati.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
