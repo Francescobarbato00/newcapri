@@ -7,8 +7,24 @@ export default function Events() {
   return (
     <section className="bg-gray-100 py-16">
       <div className="container mx-auto px-5">
-        {/* Titolo principale */}
-        <h2 className="text-4xl font-normal text-gray-800 mb-8">
+        {/* Breadcrumb visibile solo da mobile */}
+        <div className="block sm:hidden mb-6 text-center">
+          <nav className="text-sm text-gray-500 mb-2">
+            Home / Streaming
+          </nav>
+          <h3 className="text-xl font-bold text-gray-800 mb-1">
+            Indice della pagina
+          </h3>
+          <p className="text-gray-700 mb-2">
+            Scopri tutte le comunicazioni...
+          </p>
+          <button className="px-4 py-2 bg-blue-700 text-white rounded">
+            Bottone
+          </button>
+        </div>
+
+        {/* Titolo principale: centrato su mobile, allineato a sinistra da tablet in su */}
+        <h2 className="text-4xl font-normal text-gray-800 mb-8 text-center sm:text-left">
           Programmazione dell'Evento
         </h2>
 
