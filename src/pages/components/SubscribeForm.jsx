@@ -52,11 +52,11 @@ export default function SubscribeForm({ onClose }) {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-[9999]">
-      {/* Contenitore della modale con effetto di ingresso */}
+      {/* Contenitore della modale: full screen da mobile, box centrato su schermi più grandi */}
       <div
-        className={`bg-white rounded-lg shadow-lg p-4 sm:p-6 w-10/12 sm:max-w-2xl max-h-[90vh] overflow-y-auto transform transition-all duration-500 ${
+        className={`bg-white shadow-lg p-4 sm:p-6 w-full h-full sm:w-10/12 sm:max-w-2xl sm:h-auto sm:max-h-[90vh] overflow-y-auto transform transition-all duration-500 ${
           animate ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-        }`}
+        } ${window.innerWidth < 640 ? '' : 'rounded-lg'}`}
       >
         <div className="flex justify-between items-center mb-4 sm:mb-6">
           <h2 className="text-xl sm:text-2xl font-bold text-black">
