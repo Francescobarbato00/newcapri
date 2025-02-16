@@ -5,10 +5,8 @@ export default function Events() {
   const [activeTab, setActiveTab] = useState('Definisce strategie');
 
   return (
-    <section className="bg-gray-100 py-16">
+    <section className="bg-gray-100 pt-16 pb-8">
       <div className="container mx-auto px-4">
-  
-
         {/* Titolo principale: centrato su mobile, allineato a sinistra da tablet in su */}
         <h2 className="text-4xl font-normal text-gray-800 mb-8 text-center sm:text-left">
           Programmazione dell'Evento
@@ -51,7 +49,7 @@ export default function Events() {
         {/* Contenuto dinamico con effetto fade in */}
         <div
           key={activeTab}
-          className="animate-fadeIn text-gray-700 mb-8 text-sm sm:text-lg text-center sm:text-left"
+          className="animate-fadeIn text-gray-700 text-sm sm:text-lg text-center sm:text-left"
         >
           {activeTab === 'Definisce strategie' && (
             <div>
@@ -273,6 +271,11 @@ export default function Events() {
             </div>
           )}
         </div>
+      </div>
+
+      {/* Divisore estetico sottile e responsive */}
+      <div className="mt-8">
+        <hr className="border-t-2 border-gray-300 mx-auto w-11/12 sm:w-3/4 md:w-1/2" />
       </div>
     </section>
   );

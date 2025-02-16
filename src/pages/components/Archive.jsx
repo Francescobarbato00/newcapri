@@ -63,7 +63,7 @@ const Archive = () => {
   const [activeYear, setActiveYear] = useState(years[0]);
 
   return (
-    <section className="bg-gray-100 py-16">
+    <section className="bg-gray-100 py-8">
       <div className="container mx-auto px-5">
         {/* Titolo principale */}
         <h2 className="text-4xl font-normal text-gray-800 mb-6">
@@ -71,7 +71,7 @@ const Archive = () => {
         </h2>
 
         {/* Tabs per gli anni */}
-        <div className="overflow-x-auto pb-2 mt-6 sm:mt-0">
+        <div className="overflow-x-auto pb-2">
           <div className="flex space-x-6 border-b border-gray-300 mb-6">
             {years.map((year) => (
               <button
@@ -89,7 +89,7 @@ const Archive = () => {
           </div>
         </div>
 
-        {/* Lista degli eventi per l'anno attivo con effetto di ingresso */}
+        {/* Lista degli eventi per l'anno attivo */}
         <div key={activeYear} className="animate-fadeIn space-y-8">
           {eventsData[activeYear]?.map((event, index) => (
             <div

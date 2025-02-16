@@ -34,21 +34,21 @@ const Gallery = () => {
 
   return (
     <section className="bg-gray-100 py-16">
-      <div className="container mx-auto px-5 space-y-16">
+      <div className="container mx-auto px-5 space-y-8">
         {/* Header della sezione */}
         <div className="flex flex-col md:flex-row justify-between items-start">
           <div className="md:w-1/2">
-            <h1 className="text-[56px] leading-[64px] font-light mb-8 text-left text-black">
+            <h1 className="text-[56px] leading-[64px] font-light mb-4 text-left text-black">
               Galleria dell'Evento
             </h1>
-            <p className="text-[18px] sm:text-[20px] mb-8 text-left text-black">
+            <p className="text-[18px] sm:text-[20px] mb-4 text-left text-black">
               Esplora la galleria e riscopri i momenti più significativi del nostro evento
             </p>
           </div>
         </div>
 
         {/* Griglia immagini */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4">
           {immagini.map((immagine, index) => (
             <div key={index} className="group">
               <div
@@ -63,7 +63,7 @@ const Gallery = () => {
                   />
                 </div>
               </div>
-              <p className="text-black md:text-gray-700 text-sm sm:text-base mt-2 text-center">
+              <p className="text-black md:text-gray-700 text-sm sm:text-base mt-1 text-center">
                 {immagine.didascalia}
               </p>
             </div>
