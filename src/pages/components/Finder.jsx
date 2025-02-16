@@ -6,8 +6,10 @@ const Finder = ({ onClose }) => {
   // Blocca lo scroll del background quando il Finder è aperto
   useEffect(() => {
     document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
     return () => {
       document.body.style.overflow = 'unset';
+      document.documentElement.style.overflow = 'unset';
     };
   }, []);
 

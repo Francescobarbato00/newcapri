@@ -11,13 +11,11 @@ export default function Header() {
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden";
-      document.documentElement.style.overflow = "hidden"; // Blocca anche lo scroll sull'html
+      document.documentElement.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
       document.documentElement.style.overflow = "auto";
     }
-
-    // Pulizia in caso di smontaggio del componente
     return () => {
       document.body.style.overflow = "auto";
       document.documentElement.style.overflow = "auto";
@@ -108,7 +106,6 @@ export default function Header() {
 
           {/* Mobile Menu Icons */}
           <div className="md:hidden flex justify-end items-center w-full">
-            {/* Bottone per aprire il menu mobile */}
             <button
               onClick={() => setIsMobileMenuOpen(true)}
               className="w-10 h-10 bg-white text-blue-900 rounded-full flex justify-center items-center focus:outline-none"
@@ -163,10 +160,7 @@ export default function Header() {
           <h2 className="text-xl font-semibold text-black">
             Evento digitalizzazione Capri
           </h2>
-          <button
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="focus:outline-none"
-          >
+          <button onClick={() => setIsMobileMenuOpen(false)} className="focus:outline-none">
             <svg
               className="w-6 h-6 text-gray-700"
               fill="none"
@@ -174,12 +168,7 @@ export default function Header() {
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M6 18L18 6M6 6l12 12"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
@@ -195,10 +184,7 @@ export default function Header() {
             </Link>
           </li>
           <li className="text-black hover:underline">
-            <Link
-              href="/communication"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
+            <Link href="/communication" onClick={() => setIsMobileMenuOpen(false)}>
               Comunicazioni
             </Link>
           </li>
@@ -220,18 +206,10 @@ export default function Header() {
         </ul>
         <div className="p-4 border-t mt-auto">
           <div className="flex flex-col space-y-2">
-            <Link
-              href="/login"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="text-black hover:underline"
-            >
+            <Link href="/login" onClick={() => setIsMobileMenuOpen(false)} className="text-black hover:underline">
               Login
             </Link>
-            <Link
-              href="/registers"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="text-black hover:underline"
-            >
+            <Link href="/registers" onClick={() => setIsMobileMenuOpen(false)} className="text-black hover:underline">
               Registrazione
             </Link>
           </div>
@@ -240,10 +218,7 @@ export default function Header() {
 
       {/* Overlay per chiudere il menu cliccando fuori */}
       {isMobileMenuOpen && (
-        <div
-          onClick={() => setIsMobileMenuOpen(false)}
-          className="fixed inset-0 bg-black opacity-50 z-40"
-        />
+        <div onClick={() => setIsMobileMenuOpen(false)} className="fixed inset-0 bg-black opacity-50 z-40" />
       )}
 
       {isFinderOpen && <Finder onClose={() => setIsFinderOpen(false)} />}
