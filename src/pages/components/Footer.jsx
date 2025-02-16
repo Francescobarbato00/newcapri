@@ -7,11 +7,11 @@ export default function Footer() {
         {/* Sezione principale con quattro colonne */}
         <div className="flex flex-col md:flex-row justify-between space-y-8 md:space-y-0">
           {/* Informazioni di Contatto */}
-          <div className="md:w-1/4 text-center md:text-left">
+          <div className="md:w-1/4 text-center md:text-left mx-auto md:mx-0">
             <h2 className="text-2xl font-bold tracking-wide mb-4">
               Capri | Digitalizzazione della Giustizia
             </h2>
-            <hr className="border-gray-400 mb-6 w-40" />
+            <hr className="border-gray-400 mb-6 w-40 mx-auto md:mx-0" />
             <p className="mb-2">Via Sella Orta 2, Capri</p>
             <p className="mb-2">
               Telefono:{" "}
@@ -131,7 +131,7 @@ export default function Footer() {
               </li>
               <li>
                 <span className="hover:underline hover:text-gray-300 transition-colors duration-300">
-                  Dott. Ivana Petrone
+                  Dott.ssa Ivana Petrone
                 </span>
               </li>
               <li>

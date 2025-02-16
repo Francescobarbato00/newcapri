@@ -6,21 +6,21 @@ export default function Events() {
 
   return (
     <section className="bg-gray-100 py-16">
-      <div className="container mx-auto px-5">
-        {/* Breadcrumb visibile solo da mobile */}
-        <div className="block sm:hidden mb-6 text-center">
+      <div className="container mx-auto px-4">
+        {/* Breadcrumb e mobile header */}
+        <div className="block sm:hidden text-center mb-8">
           <nav className="text-sm text-gray-500 mb-2">
             Home / Streaming
           </nav>
-          <h3 className="text-xl font-bold text-gray-800 mb-1">
+          <h3 className="text-xl font-bold text-gray-800 mb-2">
             Indice della pagina
           </h3>
-          <p className="text-gray-700 mb-2">
-            Scopri tutte le comunicazioni...
-          </p>
-          <button className="px-4 py-2 bg-blue-700 text-white rounded">
-            Bottone
-          </button>
+          <a 
+            href="#" 
+            className="text-blue-600 font-semibold underline hover:text-blue-800 mb-4 block"
+          >
+            SCOPRI TUTTE LE COMUNICAZIONI &rarr;
+          </a>
         </div>
 
         {/* Titolo principale: centrato su mobile, allineato a sinistra da tablet in su */}
@@ -63,7 +63,10 @@ export default function Events() {
         </div>
 
         {/* Contenuto dinamico con effetto fade in */}
-        <div key={activeTab} className="animate-fadeIn text-gray-700 mb-8 text-sm sm:text-lg">
+        <div
+          key={activeTab}
+          className="animate-fadeIn text-gray-700 mb-8 text-sm sm:text-lg text-center sm:text-left"
+        >
           {activeTab === 'Definisce strategie' && (
             <div>
               <p className="mb-4">

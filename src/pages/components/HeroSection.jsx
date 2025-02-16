@@ -26,12 +26,12 @@ export default function HeroSection() {
 
         {/* Contenuto con font Titillium Web */}
         <div
-          className="relative z-20 text-white flex flex-col justify-center items-center px-4 md:px-0"
+          className="relative z-20 text-white flex flex-col justify-center items-center px-4 md:px-0 max-w-full sm:max-w-xl md:max-w-none"
           style={{ fontFamily: "'Titillium Web', sans-serif" }}
         >
           {/* Titolo principale */}
           <h1
-            className="text-3xl md:text-5xl font-light text-center mb-8 md:mb-16"
+            className="text-3xl md:text-5xl font-light text-center mb-4 md:mb-16"
             style={{ fontWeight: 300 }}
           >
             L'Evento annuale sulla Digitalizzazione della Giustizia
@@ -39,7 +39,7 @@ export default function HeroSection() {
 
           {/* Sottotitolo */}
           <h3
-            className="text-2xl md:text-5xl font-light text-center mb-8 md:mb-16"
+            className="text-2xl md:text-5xl font-light text-center mb-4 md:mb-16"
             style={{ fontWeight: 300 }}
           >
             Stay tuned for Capri 2025
