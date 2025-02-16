@@ -15,18 +15,28 @@ export default function SubscribeForm({ onClose }) {
     note: '',
   });
 
+  // Stato per verificare se siamo da mobile (solo lato client)
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setIsMobile(window.innerWidth < 640);
+    }
+  }, []);
+
   // Blocca completamente lo scroll della pagina e conserva la posizione corrente
   useEffect(() => {
-    const scrollY = window.scrollY;
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.width = '100%';
+    if (typeof window !== 'undefined') {
+      const scrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
 
-    return () => {
-      document.body.style.position = '';
-      document.body.style.top = '';
-      window.scrollTo(0, scrollY);
-    };
+      return () => {
+        document.body.style.position = '';
+        document.body.style.top = '';
+        window.scrollTo(0, scrollY);
+      };
+    }
   }, []);
 
   // Stato per gestire l'animazione di ingresso
@@ -54,9 +64,13 @@ export default function SubscribeForm({ onClose }) {
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-[9999]">
       {/* Contenitore della modale: full screen da mobile, box centrato su schermi più grandi */}
       <div
-        className={`bg-white shadow-lg p-4 sm:p-6 w-full h-full sm:w-10/12 sm:max-w-2xl sm:h-auto sm:max-h-[90vh] overflow-y-auto transform transition-all duration-500 ${
+        className={`bg-white shadow-lg p-4 sm:p-6 ${
+          isMobile
+            ? 'w-full h-full'
+            : 'sm:w-10/12 sm:max-w-2xl sm:h-auto sm:max-h-[90vh] rounded-lg'
+        } overflow-y-auto transform transition-all duration-500 ${
           animate ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-        } ${window.innerWidth < 640 ? '' : 'rounded-lg'}`}
+        }`}
       >
         <div className="flex justify-between items-center mb-4 sm:mb-6">
           <h2 className="text-xl sm:text-2xl font-bold text-black">
