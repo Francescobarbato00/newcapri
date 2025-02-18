@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState(null);
+  const scrollPositionRef = useRef(0);
 
   const immagini = [
     { src: '6.jpg', alt: 'Immagine 1', didascalia: 'Certosa di San Giacomo' },
@@ -20,15 +21,27 @@ const Gallery = () => {
     setSelectedImage(null);
   };
 
-  // Blocca lo scroll del background quando una foto è aperta
+  // Blocca lo scroll fissando il body
   useEffect(() => {
     if (selectedImage) {
-      document.body.style.overflow = 'hidden';
+      // Salva la posizione corrente dello scroll
+      scrollPositionRef.current = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollPositionRef.current}px`;
+      document.body.style.width = '100%';
     } else {
-      document.body.style.overflow = 'unset';
+      // Ripristina lo scroll
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      window.scrollTo(0, scrollPositionRef.current);
     }
+
     return () => {
-      document.body.style.overflow = 'unset';
+      // Pulizia in caso di smontaggio
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
     };
   }, [selectedImage]);
 
@@ -73,20 +86,13 @@ const Gallery = () => {
 
       {selectedImage && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[9999] overflow-y-auto"
+          className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[9999]"
           onClick={handleClose}
         >
           <div
-            className="relative max-w-full max-h-full flex flex-col items-center p-4"
+            className="relative flex flex-col items-center p-4"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Pulsante Chiudi */}
-            <button
-              onClick={handleClose}
-              className="absolute top-4 right-4 text-white text-3xl font-bold hover:text-gray-300 transition-colors duration-300"
-            >
-              &times;
-            </button>
             <img
               src={selectedImage.src}
               alt={selectedImage.alt}
