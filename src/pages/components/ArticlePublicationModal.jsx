@@ -59,7 +59,7 @@ const ArticlePublicationModal = ({ onClose }) => {
                 value={author}
                 onChange={(e) => setAuthor(e.target.value)}
                 placeholder="Inserisci il tuo nome"
-                className="w-full border border-gray-300 p-3"
+                className="w-full border border-gray-300 p-3 text-black"
               />
             </div>
 
@@ -71,7 +71,7 @@ const ArticlePublicationModal = ({ onClose }) => {
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
                 placeholder="Inserisci la categoria"
-                className="w-full border border-gray-300 p-3"
+                className="w-full border border-gray-300 p-3 text-black"
               />
             </div>
 
@@ -83,7 +83,7 @@ const ArticlePublicationModal = ({ onClose }) => {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="Inserisci il titolo dell'articolo"
-                className="w-full border border-gray-300 p-3"
+                className="w-full border border-gray-300 p-3 text-black"
               />
             </div>
 
@@ -95,7 +95,7 @@ const ArticlePublicationModal = ({ onClose }) => {
                 onChange={(e) => setText(e.target.value)}
                 placeholder="Scrivi il contenuto dell'articolo"
                 rows={8}
-                className="w-full border border-gray-300 p-3"
+                className="w-full border border-gray-300 p-3 text-black"
               />
             </div>
           </form>
