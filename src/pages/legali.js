@@ -4,6 +4,7 @@ import ScorrableHeader from "./components/ScorrableHeader";
 import ScorrableHeaderMobile from "./components/ScorrableHeaderMobile";
 import TopHeader from "./components/TopHeader";
 import Footer from "./components/Footer";
+import LegalNotice from './components/LegalNotice';
 
 export default function Legali() {
   const [showScrollable, setShowScrollable] = useState(false);
@@ -40,6 +41,7 @@ export default function Legali() {
           </div>
         </>
       )}
+      <LegalNotice />
       <Footer />
     </div>
   );
