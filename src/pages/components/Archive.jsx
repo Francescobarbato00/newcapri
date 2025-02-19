@@ -1,61 +1,60 @@
 import React, { useState } from "react";
 
 const Archive = () => {
-  // Dati degli eventi divisi per anno
+  // Dati degli eventi divisi per anno, con un campo "pdfLink" per ogni evento
   const eventsData = {
+    "2023": [
+      {
+        date: "VENERDI 13 OTTOBRE 2023",
+        title: "Questioni di diritto e processo del lavoro",
+        description:
+          `"Dedicato al diritto del lavoro e della previdenza sociale. Webinar della Scuola Superiore della Magistratura"`,
+        location: "Capri, 13 ottobre 2023 | Sala comunale Pollio",
+        timings: [
+          { time: "14:55", detail: "Questioni di diritto processuale del lavoro" },
+          { time: "16:20", detail: "Questioni di diritto del lavoro" },
+        ],
+        pdfLink: "/13ott23.pdf", // Link alla locandina
+      },
+      {
+        date: "DOMENICA 14 OTTOBRE 2023",
+        title: "La digitalizzazione della giustizia tra presente e futuro",
+        description:
+          `"Giornata di studi - Webinar della Scuola Superiore della Magistratura"`,
+        location: "Capri, 14 ottobre 2023 | Certosa di San Giacomo",
+        timings: [
+          { time: "08:40", detail: "Saluti di benvenuto" },
+          { time: "10:00", detail: "Primo focus: Diritto e processo civile e innovazione" },
+        ],
+        pdfLink: "/14ott23.pdf", // Link alla locandina
+      },
+    ],
     "2022": [
       {
-        date: "VENERDI 4 OTTOBRE 2022",
-        title: "Evento Lavoro 2022",
-        description: `"Il diritto del lavoro nel mondo post-pandemia"`,
-        location: "Capri Sala Pollio - 4 ottobre 2022",
+        date: "SABATO 8 OTTOBRE 2022",
+        title: "Evento di studi su giustizia e innovazione",
+        description:
+          `"Organizzando la giustizia: Le riforme del diritto e del processo al passo dell’innovazione tecnologica"`,
+        location: "Capri, 8 ottobre 2022 | Certosa di San Giacomo",
         timings: [
-          { time: "14:30", detail: "Inizio dei lavori" },
-          { time: "17:00", detail: "Tavola rotonda conclusiva" },
-          { time: "17:50", detail: "Chiusura dei lavori" },
+          { time: "08:45", detail: "Saluti e introduzione" },
+          { time: "09:00", detail: "Focus riforma e innovazione" },
         ],
+        pdfLink: "/8ott22.pdf", // Link alla locandina
       },
       {
-        date: "SABATO 5 OTTOBRE 2022",
-        title: "Evento Digitalizzazione 2022",
-        description: `"Innovazione e giustizia: un binomio vincente"`,
-        location: "Certosa di San Giacomo - 5 ottobre 2022",
+        date: "VENERDI 7 OTTOBRE 2022",
+        title: "Evento Lavoro e Previdenza Sociale",
+        description:
+          `"Causalità e danno nel 2087 c.c. e discussioni sul diritto del lavoro"`,
+        location: "Capri, 7 ottobre 2022 | Sala Comunale",
         timings: [
-          { time: "09:00", detail: "Saluti introduttivi" },
-          { time: "10:00", detail: "Focus Innovazione" },
-          { time: "11:00", detail: "Discussione Interattiva" },
-          { time: "12:30", detail: "Conclusione" },
+          { time: "14:45", detail: "Sessione Lavoro" },
+          { time: "16:15", detail: "Sessione Previdenza" },
         ],
+        pdfLink: "/7ott22.pdf", // Link alla locandina
       },
     ],
-    "2021": [
-      {
-        date: "SABATO 5 OTTOBRE 2021",
-        title: "Evento Digitalizzazione 2021",
-        description: `"Innovazione e giustizia: il futuro digitale"`,
-        location: "Certosa di San Giacomo - 5 ottobre 2021",
-        timings: [
-          { time: "09:00", detail: "Saluti introduttivi" },
-          { time: "10:00", detail: "Focus su Innovazione" },
-          { time: "10:50", detail: "Discussione Interattiva" },
-          { time: "12:00", detail: "Conclusione" },
-        ],
-      },
-    ],
-    "2020": [
-      {
-        date: "DOMENICA 3 OTTOBRE 2020",
-        title: "Evento Innovazione 2020",
-        description: `"Tecnologie emergenti e riforma giuridica"`,
-        location: "Teatro di Capri - 3 ottobre 2020",
-        timings: [
-          { time: "15:00", detail: "Apertura" },
-          { time: "16:30", detail: "Panel di discussione" },
-          { time: "18:00", detail: "Chiusura" },
-        ],
-      },
-    ],
-    // Altri anni...
   };
 
   // Estraiamo gli anni (tab) e li ordiniamo dal più recente
@@ -115,6 +114,20 @@ const Archive = () => {
                   </li>
                 ))}
               </ul>
+
+              {/* Link alla locandina (se presente) */}
+              {event.pdfLink && (
+                <div className="mt-4">
+                  <a
+                    href={event.pdfLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-900 underline inline-flex items-center hover:text-blue-600"
+                  >
+                    LEGGI LA LOCANDINA -&gt;
+                  </a>
+                </div>
+              )}
             </div>
           ))}
         </div>

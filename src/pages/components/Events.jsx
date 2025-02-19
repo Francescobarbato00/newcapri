@@ -9,7 +9,7 @@ export default function Events() {
       <div className="container mx-auto px-4">
         {/* Titolo principale: centrato su mobile, allineato a sinistra da tablet in su */}
         <h2 className="text-4xl font-normal text-gray-800 mb-8 text-center sm:text-left">
-          Programmazione dell'Evento
+          Programmazione dell'Evento 24
         </h2>
 
         {/* Tabs */}
