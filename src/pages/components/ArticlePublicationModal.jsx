@@ -37,7 +37,7 @@ const ArticlePublicationModal = ({ onClose }) => {
 
         {/* Header */}
         <div className="p-6 bg-white sticky top-0 z-10 flex justify-between items-center shadow">
-          <h2 className="text-[56px] leading-[64px] font-normal">
+          <h2 className="text-[56px] leading-[64px] font-normal text-black">
             Pubblica Articolo
           </h2>
           <button
@@ -53,7 +53,7 @@ const ArticlePublicationModal = ({ onClose }) => {
           <form>
             {/* Autore */}
             <div className="mb-8">
-              <label className="block text-xl text-gray-700 mb-2">Autore</label>
+              <label className="block text-xl text-black mb-2">Autore</label>
               <input
                 type="text"
                 value={author}
@@ -65,7 +65,7 @@ const ArticlePublicationModal = ({ onClose }) => {
 
             {/* Categoria */}
             <div className="mb-8">
-              <label className="block text-xl text-gray-700 mb-2">Categoria</label>
+              <label className="block text-xl text-black mb-2">Categoria</label>
               <input
                 type="text"
                 value={category}
@@ -77,7 +77,7 @@ const ArticlePublicationModal = ({ onClose }) => {
 
             {/* Titolo */}
             <div className="mb-8">
-              <label className="block text-xl text-gray-700 mb-2">Titolo</label>
+              <label className="block text-xl text-black mb-2">Titolo</label>
               <input
                 type="text"
                 value={title}
@@ -89,7 +89,7 @@ const ArticlePublicationModal = ({ onClose }) => {
 
             {/* Testo */}
             <div className="mb-8">
-              <label className="block text-xl text-gray-700 mb-2">Testo</label>
+              <label className="block text-xl text-black mb-2">Testo</label>
               <textarea
                 value={text}
                 onChange={(e) => setText(e.target.value)}
