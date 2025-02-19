@@ -6,6 +6,7 @@ import ScorrableHeader from "./components/ScorrableHeader";
 import ScorrableHeaderMobile from "./components/ScorrableHeaderMobile";
 import TopHeader from "./components/TopHeader";
 import BlogSection from "./components/Blogs";
+import PubblicaArticolo from "./components/PubblicaArticolo";
 
 export default function Blog() {
   const [showScrollable, setShowScrollable] = useState(false);
@@ -44,6 +45,7 @@ export default function Blog() {
         </>
       )}
       <BlogSection />
+     <PubblicaArticolo />
       <Footer />
     </div>
   );

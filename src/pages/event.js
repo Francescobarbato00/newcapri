@@ -8,6 +8,7 @@ import TopHeader from "./components/TopHeader";
 import AboutSection from "./components/AboutSection";
 import Events from "./components/Events";
 import Archive from "./components/Archive";
+import PubblicaArticolo from "./components/PubblicaArticolo";
 
 export default function Event() {
   const [showScrollable, setShowScrollable] = useState(false);
@@ -48,6 +49,7 @@ export default function Event() {
       <AboutSection />
       <Events />
       <Archive />
+      <PubblicaArticolo />
       <Footer />
     </div>
   );

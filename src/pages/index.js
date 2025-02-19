@@ -10,6 +10,7 @@ import HeroSection from "./components/HeroSection";
 import Istituzioni from "./components/Istituzioni";
 import NewsSection from "./components/NewsSection";
 import TopHeader from "./components/TopHeader";
+import PubblicaArticolo from "./components/PubblicaArticolo";
 
 export default function Home() {
   const [showScrollable, setShowScrollable] = useState(false);
@@ -54,6 +55,7 @@ export default function Home() {
       <DiscussionSection />
       <Istituzioni />
       <Gallery />
+      <PubblicaArticolo />
       <Footer />
     </div>
   );

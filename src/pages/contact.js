@@ -5,6 +5,7 @@ import ScorrableHeaderMobile from "./components/ScorrableHeaderMobile";
 import TopHeader from "./components/TopHeader";
 import Footer from "./components/Footer";
 import ContactForm from './components/ContactForm';
+import PubblicaArticolo from './components/PubblicaArticolo';
 
 export default function Contact() {
   const [showScrollable, setShowScrollable] = useState(false);
@@ -41,6 +42,7 @@ export default function Contact() {
         </>
       )}
       <ContactForm />
+     <PubblicaArticolo />
       <Footer />
     </div>
   );

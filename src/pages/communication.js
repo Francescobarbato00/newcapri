@@ -5,6 +5,7 @@ import ScorrableHeaderMobile from "./components/ScorrableHeaderMobile";
 import TopHeader from "./components/TopHeader";
 import Footer from "./components/Footer";
 import InfoSection from './components/InfoSection';
+import PubblicaArticolo from './components/PubblicaArticolo';
 
 export default function Communication() {
   const [showScrollable, setShowScrollable] = useState(false);
@@ -42,6 +43,7 @@ export default function Communication() {
         </>
       )}
       <InfoSection />
+      <PubblicaArticolo />
       <Footer />
     </div>
   );

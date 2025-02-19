@@ -5,6 +5,7 @@ import ScorrableHeaderMobile from "./components/ScorrableHeaderMobile";
 import TopHeader from "./components/TopHeader";
 import Footer from "./components/Footer";
 import Payment from './components/Payment';
+import PubblicaArticolo from './components/PubblicaArticolo';
 
 export default function Service() {
   const [showScrollable, setShowScrollable] = useState(false);
@@ -42,6 +43,7 @@ export default function Service() {
         </>
       )}
       <Payment />
+      <PubblicaArticolo />
       <Footer />
     </div>
   );

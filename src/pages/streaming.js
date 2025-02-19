@@ -5,6 +5,7 @@ import ScorrableHeaderMobile from "./components/ScorrableHeaderMobile";
 import TopHeader from "./components/TopHeader";
 import Footer from "./components/Footer";
 import SezioneStreamingMateriali from './components/SezioneStreamingMateriali';
+import PubblicaArticolo from './components/PubblicaArticolo';
 
 export default function Streaming() {
   const [showScrollable, setShowScrollable] = useState(false);
@@ -42,6 +43,7 @@ export default function Streaming() {
         </>
       )}
       <SezioneStreamingMateriali />
+      <PubblicaArticolo />
       <Footer />
     </div>
   );
