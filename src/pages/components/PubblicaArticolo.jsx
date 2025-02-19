@@ -27,7 +27,7 @@ export default function PubblicaArticolo() {
               onClick={() => setModalOpen(true)}
               className="text-white underline font-normal text-[18px] leading-[28px] hover:text-gray-200 transition-colors duration-300"
             >
-              APPROFONDISCI &rarr;
+              APRI IL FORM &rarr;
             </button>
           </div>
         </div>
